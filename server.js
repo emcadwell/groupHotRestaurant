@@ -12,30 +12,45 @@ var PORT = 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Star Wars Characters (DATA)
+// Resturant (DATA)
 // =============================================================
-var characters = [
+var Resturants = [
   {
-    routeName: "yoda",
-    name: "Yoda",
-    role: "Jedi Master",
-    age: 900,
-    forcePoints: 2000
+    routeName: "Table1",
+    name: "Table 1",
+    seatingType: "Bar",
+    seatingAmount: "1"
   },
   {
-    routeName: "darthmaul",
-    name: "Darth Maul",
-    role: "Sith Lord",
-    age: 200,
-    forcePoints: 1200
+    routeName: "Table2",
+    name: "Table 2",
+    seatingType: "Bar",
+    seatingAmount: "1"
   },
   {
-    routeName: "obiwankenobi",
-    name: "Obi Wan Kenobi",
-    role: "Jedi Master",
-    age: 55,
-    forcePoints: 1350
-  }
+    routeName: "Table3",
+    name: "Table 3",
+    seatingType: "Bar",
+    seatingAmount: "1"
+  },
+  {
+    routeName: "Table4",
+    name: "Table 4",
+    seatingType: "Table",
+    seatingAmount: "2"
+  },
+  {
+    routeName: "Table5",
+    name: "Table 5",
+    seatingType: "Table",
+    seatingAmount: "2"
+  },
+  {
+    routeName: "Table6",
+    name: "Table 6",
+    seatingType: "Table",
+    seatingAmount: "4"
+  },
 ];
 
 // Routes
