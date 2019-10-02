@@ -19,9 +19,12 @@
         <p class="lead">Make a reservation</p>
         <hr class="my-2">
         <p class="lead">
-            <button type="button" class="btn btn-lg btn-outline-dark"><i class="fa fa-home"
-                    aria-hidden="true"></i></button>
-            <a class="btn btn-danger btn-lg" href="tables.html" role="button">View tables</a>
+            <button type="button" class="btn btn-lg btn-outline-dark">
+                <a href="/">
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                </a>
+            </button>
+            <a class="btn btn-danger btn-lg" href="/tables" role="button">View tables</a>
         </p>
     </div>
     <div class="container">
@@ -80,7 +83,7 @@
             };
 
             // Question: What does this code do??
-            $.post("/api/reservations", newReservation)
+            $.post("/api/reservation", newReservation)
                 .then(function (data) {
                     console.log("reserve.html", data);
                     alert("Adding reservation...");
