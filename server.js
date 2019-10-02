@@ -1,109 +1,121 @@
 // Dependencies
-// =============================================================
+
 var express = require("express");
 var path = require("path");
 
 // Sets up the Express App
-// =============================================================
+
 var app = express();
 var PORT = 3000;
 
 // Sets up the Express app to handle data parsing
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({
+  extended: true
+}));
 app.use(express.json());
 
-// Resturant (DATA)
-// =============================================================
-var Resturants = [
+// Star Wars client (DATA)
+
+var client = [
+
+  // Resturant (DATA)
   {
-    routeName: "Table1",
-    name: "Table 1",
-    seatingType: "Bar",
-    seatingAmount: "1"
+    name: "Table1",
+    phone: "(224)334-2567",
+    email: "ron@pat.co",
+    id: "14516"
   },
   {
-    routeName: "Table2",
-    name: "Table 2",
-    seatingType: "Bar",
-    seatingAmount: "1"
+    name: "Table2",
+    phone: "(224)334-2567",
+    email: "ron@pat.co",
+    id: "14516"
   },
   {
-    routeName: "Table3",
-    name: "Table 3",
-    seatingType: "Bar",
-    seatingAmount: "1"
+    name: "Table3",
+    phone: "(224)334-2567",
+    email: "ron@pat.co",
+    id: "14516"
   },
   {
-    routeName: "Table4",
-    name: "Table 4",
-    seatingType: "Table",
-    seatingAmount: "2"
+    name: "Table4",
+    phone: "(224)334-2567",
+    email: "ron@pat.co",
+    id: "24516"
   },
   {
-    routeName: "Table5",
-    name: "Table 5",
-    seatingType: "Table",
-    seatingAmount: "2"
+    name: "Table5",
+    phone: "(224)334-2567",
+    email: "ron@pat.co",
+    id: "24516"
   },
   {
-    routeName: "Table6",
-    name: "Table 6",
-    seatingType: "Table",
-    seatingAmount: "4"
+    name: "Table6",
+    phone: "(224)334-2567",
+    email: "ron@pat.co",
+    id: "44516"
   },
 ];
 
 // Routes
-// =============================================================
+
+// 
 
 // Basic route that sends the user first to the AJAX Page
+// -----------------------------------needs attention ---------------------------------------------------------
 app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "view.html"));
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
-app.get("/add", function(req, res) {
-  res.sendFile(path.join(__dirname, "add.html"));
+app.get("/tables", function(req, res) {
+  res.sendFile(path.join(__dirname, "tables.html"));
 });
 
-// Displays all characters
-app.get("/api/characters", function(req, res) {
-  return res.json(characters);
+app.get("/reserve", function(req, res) {
+  res.sendFile(path.join(__dirname, "reserve.html"));
 });
 
+// Displays all client
+app.get("/api/client", function(req, res) {
+  return res.json(client);
+});
+
+// -----------------------------------needs attention -----------------------------------------------------------
 // Displays a single character, or returns false
-app.get("/api/characters/:character", function(req, res) {
-  var chosen = req.params.character;
+app.get("/api/client/:table", function (req, res) {
+
+  var chosen = req.params.table;
 
   console.log(chosen);
 
-  for (var i = 0; i < characters.length; i++) {
-    if (chosen === characters[i].routeName) {
-      return res.json(characters[i]);
+  for (var i = 0; i < client.length; i++) {
+    if (chosen === client[i].routeName) {
+      return res.json(client[i]);
     }
   }
 
   return res.json(false);
 });
 
-// Create New Characters - takes in JSON input
-app.post("/api/characters", function(req, res) {
+// Create New client - takes in JSON input
+app.post("/api/reservation", function (req, res) {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body parsing middleware
-  var newCharacter = req.body;
+  var newClient = req.body;
 
-  // Using a RegEx Pattern to remove spaces from newCharacter
+  // Using a RegEx Pattern to remove spaces from newClient
   // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-  newCharacter.routeName = newCharacter.name.replace(/\s+/g, "").toLowerCase();
+  newClient.routeName = newClient.name.replace(/\s+/g, "").toLowerCase();
 
-  console.log(newCharacter);
+  console.log(newClient);
 
-  characters.push(newCharacter);
+  client.push(newClient);
 
-  res.json(newCharacter);
+  res.json(newClient);
 });
 
 // Starts the server to begin listening
-// =============================================================
-app.listen(PORT, function() {
+
+app.listen(PORT, function () {
   console.log("App listening on PORT " + PORT);
 });
