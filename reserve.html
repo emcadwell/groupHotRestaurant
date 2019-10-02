@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="jumbotron text-center">
+        <h1 class="display-3">Hot Restaurant</h1>
+        <p class="lead">Make a reservation</p>
+        <hr class="my-2">
+        <p class="lead">
+            <button type="button" class="btn btn-lg btn-outline-dark"><i class="fa fa-home"
+                    aria-hidden="true"></i></button>
+            <a class="btn btn-danger btn-lg" href="tables.html" role="button">View tables</a>
+        </p>
+    </div>
+    <div class="container">
+        <form>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Name</label>
+                <input type="email" class="form-control" id="name" placeholder="Eric Caldwell">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Phone Number</label>
+                <input type="email" class="form-control" id="phone" placeholder="(420)664-6912">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="ron@pat.com">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Party Size</label>
+                <select class="form-control" id="party">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8+</option>
+                </select>
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    <a id="submit" class="btn btn-primary w-50 py-3" href="#" role="button">Submit</a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script>
+        $("#submit").on("click", function (event) {
+            event.preventDefault();
+            var newReservation = {
+                name: $("#name").val().trim(),
+                phone: $("#phone").val().trim(),
+                email: $("#email").val().trim(),
+                party: $("#party").val().trim()
+            };
+
+            // Question: What does this code do??
+            $.post("/api/reservations", newReservation)
+                .then(function (data) {
+                    console.log("reserve.html", data);
+                    alert("Adding reservation...");
+                });
+        });
+    </script>
+</body>
+
+</html>
